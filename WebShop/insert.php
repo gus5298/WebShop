@@ -1,6 +1,9 @@
 <?php
 include('includes/conn.inc.php');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 $email = $_POST['email'];
 $name = $_POST['name'];
 $password = $_POST['password'];
@@ -13,24 +16,59 @@ try {
 	$sql= "INSERT INTO users (email, name, password, dob)
        VALUES ('$email', '$name', '$hashed_password', '$dob')";
        $stmt = $pdo -> query($sql);
-   	   header("Location: ../WebShop/index.php");
+   	  
 
+
+
+//Load Composer's autoloader
+	require 'vendor/autoload.php';
+
+	$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+try {
+    //Server settings
+    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.gmail.com';  						// Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'agrewal12345@gmail.com';                 // SMTP username
+    $mail->Password = 'asoiaf64';                           // SMTP password
+    $mail->SMTPSecure = 'TLS';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587;                                    // TCP port to connect to
+
+    //Recipients
+    $mail->setFrom('agrewal12345@gmail.com', 'Drinks People');
+    $mail->addAddress($email, $name);     // Add a recipient
+   // $mail->addAddress('ellen@example.com');               // Name is optional
+   // $mail->addReplyTo('info@example.com', 'Information');
+   // $mail->addCC('cc@example.com');
+   // $mail->addBCC('bcc@example.com');
+
+    //Attachments
+    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+    //Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'Thank you for registering';
+    $mail->Body    = 'Thank you for registering to our site';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo 'Message has been sent';
+
+    header("Location: ../WebShop/login.php");
+    
 } catch (Exception $e) {
-   header("Location: ../WebShop/login.php");
-   $message = "Email exisits";
-	echo "<script type='text/javascript'>alert('$message');</script>";
+    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 }
 
 
-/*
-$to=$email;
-$subject= "Thanks for registering my g!";
-$from = 'agrewal12345@gmail.com';
-$body='Thank you for registering to alcoholics anonymous!';
-$headers = "From:".$from;
-mail($to,$subject,$body,$headers);
-*/
 
+} catch (Exception $e) {
+    	header("Location: ../WebShop/login.php");
+    	$message = "Email exisits";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+}
 
 
 ?>
