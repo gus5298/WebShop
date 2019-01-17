@@ -7,7 +7,7 @@ Tasks:
 
 ✔ 2	Validation of data before they are sent (client side) (function) //Javi
 
-☐ 3	User Registration + (display + function) (prevent double registration!)//Arjun
+✔ 3	User Registration + (display + function) (prevent double registration!)//Arjun
 
 ✘ 4	Registration confirmation => Email //Arjun
 
@@ -19,7 +19,7 @@ Tasks:
 
 ✔ 8	Show article overview (display + function) //Gustavo
 
-☐ 9	Add item to cart and buy (display + function) //Javi
+✔ 9	Add item to cart and buy (display + function) //Javi
 
 ☐ 10	When ordering, 2 types of delivery can be selected / Normal or Express (+ X €) //Gustavo
 
