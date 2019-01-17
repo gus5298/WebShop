@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ticket Faster</title>
+    <title>Web shop</title>
     <link rel="stylesheet" type="text/css" href="css/mobile.css">
     <link rel="stylesheet" type="text/css" media="only screen and (min-width:601px)" href="css/desktop.css">
 	</head>
@@ -34,10 +33,10 @@
              <form action="checkLogin.php" method="post" >
 
                   <label for="email">email</label>
-                  <input name="email" type="text">
+                  <input name="email" type="email" title="Please introduce a valid email address" required="required">
 
                   <label for="password">Password</label>
-                  <input name="userPassword" type="password">
+                  <input name="userPassword" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Your password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required="required">
 
                   <input type="Submit" value="submit">
 
