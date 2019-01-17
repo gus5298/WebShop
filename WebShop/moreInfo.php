@@ -58,10 +58,10 @@ $row = $stmt->fetchObject();
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                   <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#home">Beer</a></li>
+                    <li><a href="#beer">Beer</a></li>
                     <li><a href="#spirits">Spirits</a></li>
-                    <li><a href="#events">Wine</a></li>
-                    <li><a href="#news">Special Offers</a></li>
+                    <li><a href="#wine">Wine</a></li>
+                    <li><a href="#special_offers">Special Offers</a></li>
                   
                     <li> <form method="get" action="/WebShop/cart.php">
                     <button type="submit" class="btn btn-default btn-sm"  style="width: 120px; height: 35px; margin-top: 9px;  margin-right:7px;"><span class="glyphicon glyphicon-shopping-cart">
@@ -88,6 +88,15 @@ $row = $stmt->fetchObject();
                 echo "<img src=\"$row->picture\" alt=\"$row->name\" class=\"rightImg\">"
             
             ?>
+
+            <form action="cart.php" method="GET">
+              <input name="quantity" type="hidden" value="1" />
+              <input name="product_id" type="hidden" value="<?php echo "$row->id"; ?>" /> 
+              <input name="product_name" type="hidden" value="<?php echo "$row->name"; ?>" /> 
+              <input name="product_price" type="hidden" value="<?php echo "$row->price"; ?>" />
+              <button class="add-button" type="submit">Add to Cart!</button>
+            </form>
+
             </div>
             </div>  
 

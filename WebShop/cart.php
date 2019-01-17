@@ -172,13 +172,33 @@ span.price {
             </section>
 <div class="col-25">
     <div class="container">
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      <script type="text/javascript">
+        function getQueryVariable(variable) {
+          var query = window.location.search.substring(1);
+          var vars = query.split("&");
+          for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable) {
+              return pair[1];
+            }
+          }
+          return(false);
+        }
+
+        var array = [];
+        var index = 1;
+      </script>
+      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart"></b></span></h4>
+        <p id="products"></p>
       <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+      <p>Total <span class="price" style="color:black"><b id="total"></b></span></p>
+
+      <script type="text/javascript">
+        document.getElementById("cart").innerHTML = getQueryVariable("product_price");
+        document.getElementById("products").innerHTML = getQueryVariable("product_name") + " " + getQueryVariable("product_price");
+        document.getElementById("total").innerHTML = getQueryVariable("product_price");
+      </script>
+
     </div>
   </div>
 <div class="row">
