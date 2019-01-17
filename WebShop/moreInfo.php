@@ -1,11 +1,11 @@
-          <?php 
-// #includes
-require('includes/conn.inc.php');
-ini_set('display_errors', 1);
-
-//to display all the images
-$sql = "SELECT * FROM items";
-$stmt = $pdo->query($sql);
+         <?php 
+require('includes/conn.inc.php'); 
+require('includes/functions.inc.php'); 
+$sid = safeInt($_GET['id']);
+$stmt = $pdo->prepare("SELECT * FROM items WHERE id = :id");
+$stmt->bindParam(':id', $sid, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetchObject();
 ?>
 
             <!DOCTYPE html>
@@ -52,9 +52,9 @@ $stmt = $pdo->query($sql);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                   </button>
-                  <a class="navbar-brand img" href="#"><img src="img/logodrinks.png" class="img-responsive"
+                  <a class="navbar-brand img" href="index.php#"><img src="img/logodrinks.png" class="img-responsive"
                     style="width: 160px; margin-top: -26px; margin-left: 20px"></a>
-                     <a class="navbar-brand img" href="#">Drinks Shop</a>
+                     <a class="navbar-brand img" href="index.php#">Drinks Shop</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                   <ul class="nav navbar-nav navbar-right">
@@ -78,35 +78,21 @@ $stmt = $pdo->query($sql);
             </section>
 
       <div id="" class="container text-center">
-      <div id="spirits">
-            <div id="drinks">
-                <h2>Spirits</h2>
-              <!--   <p>This will be the part where ther is text</p>
-                <p>This will be the part where ther is text</p>
-                <p>This will be the part where ther is text</p>
-                <p>This will be the part where ther is text</p>
-                <p>This will be the part where ther is text</p> -->
+      <div id="page">
+            <div id="content">
+                <?php
+                echo "<h2>{$row->name}</h2>";
+                echo "<p>$row->description</p>";
+                echo "<p>$row->price</p>";
+                echo "<p>$row->id</p>";
+                echo "<img src=\"$row->picture\" alt=\"$row->name\" class=\"rightImg\">"
+            
+            ?>
             </div>
-      </div>
+            </div>  
 
       
-      <div class="imgGrid">
-        <?php
-        while($row =$stmt->fetchObject()){
-                        echo '<div class="grid">';
-                            echo "<div class=\"name\">{$row->name}</div>";
-                            echo "<img src=\"{$row->picture}\">";
-
-
-                            //MORE DETAILS BUTTON THAT PASSES THE ID
-                            echo "<div class=\"preview\"><a href=\"#\" data-id=\"{$row->id}\"class=\"getPreview\">Preview</a>
-                                  <a href=\"moreinfo.php?id={$row->id}\">More Details</a></div>";
-
-
-            echo '</div>';
-        }
-        ?>
-      </div>
+      
 
     </div>
       </div>
