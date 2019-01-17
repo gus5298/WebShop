@@ -9,7 +9,7 @@ Tasks:
 
 ✔ 3	User Registration + (display + function) (prevent double registration!)//Arjun
 
-✘ 4	Registration confirmation => Email //Arjun
+✔ 4	Registration confirmation => Email //Arjun
 
 ✔ 5	Password SHA2 encrypted in database (function) //Arjun
 
