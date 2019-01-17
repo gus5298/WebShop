@@ -89,7 +89,7 @@ $row = $stmt->fetchObject();
             
             ?>
 
-            <form action="cart.php" method="GET">
+            <form action="insertToCart.php" method="POST">
               <input name="quantity" type="hidden" value="1" />
               <input name="product_id" type="hidden" value="<?php echo "$row->id"; ?>" /> 
               <input name="product_name" type="hidden" value="<?php echo "$row->name"; ?>" /> 
