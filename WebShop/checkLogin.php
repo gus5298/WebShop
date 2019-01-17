@@ -9,11 +9,12 @@ require('includes/conn.inc.php');
     else{
         $sql = "SELECT * FROM users WHERE email = '$email'";
         $stmt = $pdo->query($sql);
-        $row =$stmt->fetch(pdo::FETCH_ASSOC);
+        $row = $stmt->fetch(pdo::FETCH_ASSOC);
         $dbPasswordHash = password_verify($password, $row['password']);
         if($dbPasswordHash == true){
             echo "valid";
             $_SESSION['email'] = $email;
+            $_SESSION['product_name'] = [];
             $_SESSION['login'] = 1;
             header("Location: ../WebShop/index.php");
            

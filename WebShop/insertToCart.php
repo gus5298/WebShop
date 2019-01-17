@@ -3,17 +3,11 @@ include('includes/conn.inc.php');
 session_start();
 
 $name = $_POST['product_name'];
+array_push($_SESSION['product_name'], $name);
 $price = $_POST['product_price'];
-
-$email = $_SESSION['email'];
-$stmtu = $pdo->query("SELECT id FROM users WHERE email = '$email'");
-$stmtu->execute();
-$user_id = (int)$stmtu;
-
-$sql= "INSERT INTO cart (product_name, product_price, user_id)
-       VALUES ('$name', '$price', '$user_id')";
-
-$stmt = $pdo->query($sql);
+$_SESSION['product_price'] = $_SESSION['product_price'] + $price;
+$quantity = $_POST['quantity'];
+$_SESSION['quantity'] = $_SESSION['quantity'] + $quantity;
 
 header("refresh:1; url=cart.php");
 ?>

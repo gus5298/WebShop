@@ -1,5 +1,6 @@
             <?php
             require('includes/conn.inc.php');
+            session_start();
             ?>
 
             <!DOCTYPE html>
@@ -172,33 +173,39 @@ span.price {
             </section>
 <div class="col-25">
     <div class="container">
-      <script type="text/javascript">
-        function getQueryVariable(variable) {
-          var query = window.location.search.substring(1);
-          var vars = query.split("&");
-          for (var i=0;i<vars.length;i++) {
-            var pair = vars[i].split("=");
-            if(pair[0] == variable) {
-              return pair[1];
+      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart">
+
+        <?php echo $_SESSION['quantity']; ?>
+          
+        </b></span></h4>
+        <table id="products" border="1px solid black">
+          <tr>
+            <td>Product name</td>
+            <td>Price</td>
+          </tr>
+
+          <?php
+
+            foreach ($_SESSION['product_name'] as $pn) {
+              $sql = "SELECT price FROM items WHERE name = '$pn'";
+              $stmt = $pdo->query($sql);
+              $prodp = $stmt->fetch(pdo::FETCH_ASSOC);
+              foreach ($prodp as $pp) {
+                echo "<tr>";
+                  echo "<td>".$pn."</td>";
+                  echo "<td>".$pp."</td>";
+              }
             }
-          }
-          return(false);
-        }
 
-        var array = [];
-        var index = 1;
-      </script>
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart"></b></span></h4>
-        <p id="products"></p>
+          ?>
+
+        </table>
       <hr>
-      <p>Total <span class="price" style="color:black"><b id="total"></b></span></p>
+      <p>Total <span class="price" style="color:black"><b id="total">
+        
+        <?php echo $_SESSION['product_price']; ?>
 
-      <script type="text/javascript">
-        document.getElementById("cart").innerHTML = getQueryVariable("product_price");
-        document.getElementById("products").innerHTML = getQueryVariable("product_name") + " " + getQueryVariable("product_price");
-        document.getElementById("total").innerHTML = getQueryVariable("product_price");
-      </script>
-
+      </b></span></p>
     </div>
   </div>
 <div class="row">
@@ -259,11 +266,26 @@ span.price {
           
         </div>
         <div class="radio">
-       <label><input type="radio" name="optradio" checked>Normal delivery</label>
+       <label><input type="radio" id="nd" name="optradio" onchange="lessMoney()" checked>Normal delivery</label>
        </div>
       <div class="radio">
-      <label><input type="radio" name="optradio">Express delivery (+ 5EUR)</label>
+      <label><input type="radio" id="ed" name="optradio" onchange="moreMoney()">Express delivery (+ 5EUR)</label>
       </div>
+        <?php
+
+          function lessMoney() {
+            if (document.getElementById("nd").checked) {
+              $_SESSION['product_price'] = $_SESSION['product_price'] - 5;
+            }
+          }
+
+          function moreMoney() {
+            if (document.getElementById("ed").checked) {
+              $_SESSION['product_price'] = $_SESSION['product_price'] + 5;
+            }
+          }
+
+        ?>
         <input type="submit" value="Order and Pay" class="btn">
       </form>
     </div>
