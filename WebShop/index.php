@@ -12,6 +12,14 @@ require('includes/conn.inc.php');
     header("Location: ../Webshop/login.php");
   }
 
+if (isset($_GET['search'])){
+  $searchTerm = "%" . $_GET['search'] . "%";
+  $sql= "SELECT * FROM items
+        WHERE (name LIKE :search OR price LIKE :search)"; /* could add genre */
+  $stmt2 = $pdo->prepare($sql);
+  $stmt2->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+  $stmt2->execute();
+}
 
 
 ini_set('display_errors', 1);
@@ -65,12 +73,20 @@ $stmt = $pdo->query($sql);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                   </button>
-                  <a class="navbar-brand img" href="#"><img src="img/logodrinks.png" class="img-responsive"
+                  <a class="navbar-brand img" href="index.php"><img src="img/logodrinks.png" class="img-responsive"
                     style="width: 160px; margin-top: -26px; margin-left: 20px"></a>
                      <a class="navbar-brand img" href="#">Drinks Shop</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                   <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                    <form id="form1" name="form1" method="get" action=""class="form-inline">
+                        <input name="search" type="text" id="search" class="form-control">
+                        <input type="submit" name="submit" value="search">
+                    </form>
+                    </li>
+
                     <li><a href="#home">Beer</a></li>
                     <li><a href="#spirits">Spirits</a></li>
                     <li><a href="#events">Wine</a></li>
@@ -106,9 +122,24 @@ $stmt = $pdo->query($sql);
             </div>
       </div>
 
-      
       <div class="imgGrid">
+        
+      
         <?php
+
+        if (isset($_GET['search'])){
+                    while($row =$stmt2->fetchObject()){
+                         echo "<div class=\"name\">{$row->name}</div>";
+                            echo "<img src=\"{$row->picture}\">";
+
+                            //MORE DETAILS BUTTON THAT PASSES THE ID
+                            echo "<div class=\"preview\"><a href=\"#\" data-id=\"{$row->id}\"class=\"getPreview\">Preview</a>
+                                  <a href=\"moreinfo.php?id={$row->id}\">More Details</a></div>";
+            echo '</div>';
+        }
+      }
+      else{
+
         while($row =$stmt->fetchObject()){
                         echo '<div class="grid">';
                             echo "<div class=\"name\">{$row->name}</div>";
@@ -122,9 +153,9 @@ $stmt = $pdo->query($sql);
 
             echo '</div>';
         }
+      }
         ?>
-      </div>
-
+        
     </div>
       </div>
 
