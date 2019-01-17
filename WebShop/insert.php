@@ -11,14 +11,12 @@ $dob = $_POST['dob'];
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-
 try {
+
 	$sql= "INSERT INTO users (email, name, password, dob)
        VALUES ('$email', '$name', '$hashed_password', '$dob')";
        $stmt = $pdo -> query($sql);
    	  
-
-
 
 //Load Composer's autoloader
 	require 'vendor/autoload.php';
@@ -57,18 +55,20 @@ try {
     echo 'Message has been sent';
 
     header("Location: ../WebShop/login.php");
-    
+
 } catch (Exception $e) {
     echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 }
 
-
-
-} catch (Exception $e) {
-    	header("Location: ../WebShop/login.php");
-    	$message = "Email exisits";
-		echo "<script type='text/javascript'>alert('$message');</script>";
 }
+catch (\Exception $e) {
+    	
+    	$message = "Email Already Exists!";
+		echo "<script type='text/javascript'>alert('$message');
+		location.href = 'register.php';
+		</script>";
 
+//		header("Location: ../WebShop/register.php");
+}
 
 ?>
