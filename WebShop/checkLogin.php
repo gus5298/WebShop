@@ -1,6 +1,8 @@
 <?php
 require('includes/conn.inc.php');
 
+    session_start();
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -16,9 +18,10 @@ require('includes/conn.inc.php');
         if($dbPasswordHash == true){
 
             echo "valid";
-
-          /*  header("Location: ../webshop/index.php");
-            $_SESSION['login'] = 1;*/
+            
+            $_SESSION['login'] = 1;
+            header("Location: ../WebShop/index.php");
+           
         }
         else{
 

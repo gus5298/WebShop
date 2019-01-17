@@ -1,6 +1,19 @@
-          <?php 
+<?php 
 // #includes
 require('includes/conn.inc.php');
+
+
+  session_start();
+  $found=false;
+  if($_SESSION["login"]==1){
+    $found=true;
+  }
+  if($found==false){
+    header("Location: ../Webshop/login.php");
+  }
+
+
+
 ini_set('display_errors', 1);
 
 //to display all the images
@@ -62,11 +75,15 @@ $stmt = $pdo->query($sql);
                     <li><a href="#spirits">Spirits</a></li>
                     <li><a href="#events">Wine</a></li>
                     <li><a href="#news">Special Offers</a></li>
-                  
+                    <li><a href="logout.php">Logout</a></li>
+
                     <li> <form method="get" action="/WebShop/cart.php">
                     <button type="submit" class="btn btn-default btn-sm"  style="width: 120px; height: 35px; margin-top: 9px;  margin-right:7px;"><span class="glyphicon glyphicon-shopping-cart">
                     </span> Shopping Cart</button></form>
                     </li>
+                    
+                  
+                    
                    <!--  <li> <form method="get" action="/WAD/admin/view.php">
                     <button type="submit"  style="width: 90px; height: 35px; margin-top: 7px;  margin-right:7px;">Admin</button></form>
                     </li> -->
