@@ -1,6 +1,8 @@
 <?php
 include('includes/conn.inc.php');
 session_start();
+error_reporting(0);
+@ini_set('display_errors', 0);
 
 $name = $_POST['product_name'];
 array_push($_SESSION['product_name'], $name);

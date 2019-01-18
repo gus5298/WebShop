@@ -1,6 +1,8 @@
             <?php
             require('includes/conn.inc.php');
             session_start();
+            error_reporting(0);
+            @ini_set('display_errors', 0);
             ?>
 
             <!DOCTYPE html>
@@ -176,7 +178,11 @@ span.price {
     <div class="container">
       <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart">
 
-        <?php echo $_SESSION['quantity']; ?>
+        <?php
+        
+        echo $_SESSION['quantity'];
+
+        ?>
           
         </b></span></h4>
         <table id="products" border="1px solid black">

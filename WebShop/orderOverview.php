@@ -1,6 +1,8 @@
 <?php
 require('includes/conn.inc.php');
 session_start();
+error_reporting(0);
+@ini_set('display_errors', 0);
 ?>
 
 <!DOCTYPE html>
@@ -57,11 +59,16 @@ session_start();
   $stmt = $pdo -> query($sql);
   ?>
 
-  <input type="button" name="button" onclick="refresh()" value="Click here to order again">
+  <input type="button" name="refresh" onclick="refresh()" value="Click here to order again">
+  <input type="button" name="logout" onclick="logout()" value="Click here to go back to the main page">
 
   <script type="text/javascript">
     function refresh() {
       window.location.href = "orderOverview.php";
+    }
+
+    function logout() {
+      window.location.href = "logout.php";
     }
   </script>
 
