@@ -1,6 +1,13 @@
             <?php
             require('includes/conn.inc.php');
             session_start();
+            $found=false;
+            if($_SESSION["login"]==1){
+            $found=true;
+            }
+            if($found==false){
+            header("Location: ../Webshop/login.php");
+            }
             error_reporting(0);
             @ini_set('display_errors', 0);
             ?>
