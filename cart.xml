@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.8.4
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Jan 18, 2019 at 01:42 AM
+- Server version: 10.1.37-MariaDB
+- PHP Version: 7.3.0
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="webshop" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="cart">
+                CREATE TABLE `cart` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `product_name` varchar(50) NOT NULL,
+                  `product_price` int(11) NOT NULL,
+                  `user_id` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `user_id` (`user_id`),
+                  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'webshop'
+    -->
+    <database name="webshop">
+        <!-- Table cart -->
+        <table name="cart">
+            <column name="id">10</column>
+            <column name="product_name">Jack Daniels</column>
+            <column name="product_price">12</column>
+            <column name="user_id">1</column>
+        </table>
+        <table name="cart">
+            <column name="id">11</column>
+            <column name="product_name">Jack Daniels</column>
+            <column name="product_price">12</column>
+            <column name="user_id">1</column>
+        </table>
+        <table name="cart">
+            <column name="id">12</column>
+            <column name="product_name">Hennesy</column>
+            <column name="product_price">11</column>
+            <column name="user_id">1</column>
+        </table>
+        <table name="cart">
+            <column name="id">13</column>
+            <column name="product_name">Jack Daniels</column>
+            <column name="product_price">12</column>
+            <column name="user_id">1</column>
+        </table>
+        <table name="cart">
+            <column name="id">14</column>
+            <column name="product_name">Hennesy</column>
+            <column name="product_price">11</column>
+            <column name="user_id">1</column>
+        </table>
+        <table name="cart">
+            <column name="id">15</column>
+            <column name="product_name">Jack Daniels</column>
+            <column name="product_price">12</column>
+            <column name="user_id">1</column>
+        </table>
+    </database>
+</pma_xml_export>
