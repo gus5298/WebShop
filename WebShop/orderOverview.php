@@ -12,7 +12,7 @@ error_reporting(0);
   <meta charset="utf-8">
 </head>
 <body>
-  <h1>Thank you for buying!</h1><br>
+  <h1>Order overview</h1><br>
   <p>Your order: </p>
   <table id="products" border="1px solid black">
     <tr>
@@ -53,12 +53,20 @@ error_reporting(0);
   $addr = $_SESSION['address'];
 
   $exp = $_SESSION['express'];
+  if ($exp == "0") {
+    echo "Normal delivery";
+  } else {
+    echo "Express delivery (+5€)";
+  }
 
   $sql = "INSERT INTO orders (userId, description, totalPrice, date, address, express)
        VALUES ('$ui', '$desc', '$tp', '$date', '$addr', '$exp')";
   $stmt = $pdo -> query($sql);
   ?>
 
+  <br>
+  <br>
+  <br>
   <input type="button" name="refresh" onclick="refresh()" value="Click here to order again">
   <input type="button" name="logout" onclick="logout()" value="Click here to go back to the main page">
 
