@@ -93,10 +93,16 @@ $stmt = $pdo->query($sql);
                     <li><a href="#news">Special Offers</a></li>
                     <li><a href="logout.php">Logout</a></li>
 
-                    <li> <form method="get" action="/WebShop/cart.php">
-                    <button type="submit" class="btn btn-default btn-sm"  style="width: 120px; height: 35px; margin-top: 9px;  margin-right:7px;"><span class="glyphicon glyphicon-shopping-cart">
-                    </span> Shopping Cart</button></form>
+                    <li>
+                    <button type="submit" class="btn btn-default btn-sm"  style="width: 120px; height: 35px; margin-top: 9px;  margin-right:7px;" onclick="goToCart()"><span class="glyphicon glyphicon-shopping-cart">
+                    </span> Shopping Cart</button>
                     </li>
+                    
+                    <script type="text/javascript">
+                      function goToCart() {
+                        window.location.href = "http://localhost/WebShop/cart.php?express=0";
+                      }
+                    </script>
                     
                   
                     
