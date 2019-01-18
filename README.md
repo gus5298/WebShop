@@ -25,10 +25,10 @@ Tasks:
 
 ✘ 11	Confirmation by email (function) with article quantity + article name + total + shipping costs 
 
-12	Overview of purchased items (display + function)
+✔ 12	Overview of purchased items (display + function)
 
-13	 In the overview a button with the function to execute the same order again.
+✔ 13 In the overview a button with the function to execute the same order again.
 
-14	Readability of the website
+✔ 14	Readability of the website
 
 + everything else is extra and improves the grade
