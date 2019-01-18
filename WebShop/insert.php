@@ -28,13 +28,13 @@ try {
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'smtp.gmail.com';  						// Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'agrewal12345@gmail.com';                 // SMTP username
-    $mail->Password = 'asoiaf64';                           // SMTP password
+    $mail->Username = 'drinkshop41@gmail.com';                 // SMTP username
+    $mail->Password = 'Testtest-1';                           // SMTP password
     $mail->SMTPSecure = 'TLS';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('agrewal12345@gmail.com', 'Drinks People');
+    $mail->setFrom('drinkshop41@gmail.com', 'Drinks Shop');
     $mail->addAddress($email, $name);     // Add a recipient
    // $mail->addAddress('ellen@example.com');               // Name is optional
    // $mail->addReplyTo('info@example.com', 'Information');
@@ -58,6 +58,8 @@ try {
 
 } catch (Exception $e) {
     echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+
+    header("Location: ../WebShop/login.php");
 }
 
 }

@@ -1,6 +1,11 @@
 <?php
 require('includes/conn.inc.php');
 session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
 error_reporting(0);
 @ini_set('display_errors', 0);
 ?>
@@ -100,10 +105,6 @@ error_reporting(0);
 
   $email = $_SESSION['email'];
 
-  $sqlui = "SELECT id FROM users WHERE email = '$email'";
-  $stmtui = $pdo->query($sqlui);
-  $ui = (int)$stmtui;
-
   $desc = "";
   $conc = ", ";
   foreach ($_SESSION['product_name'] as $pn) {
@@ -117,15 +118,27 @@ error_reporting(0);
   $addr = $_SESSION['address'];
 
   $exp = $_SESSION['express'];
+
   if ($exp == "0") {
     echo "Normal delivery";
   } else {
     echo "Express delivery (+5€)";
   }
+  echo "<br>Total price: ".$_SESSION['product_price']."€";
 
-  $sql = "INSERT INTO orders (userId, description, totalPrice, date, address, express)
-       VALUES ('$ui', '$desc', '$tp', '$date', '$addr', '$exp')";
+  $sql = "INSERT INTO orders (email, description, totalPrice, date, address, express)
+       VALUES ('$email', '$desc', '$tp', '$date', '$addr', '$exp')";
   $stmt = $pdo -> query($sql);
+
+
+   $shippingCost;
+    if ($_SESSION['express']==0) {
+      $shippingCost = "0";
+    } else {
+      $shippingCost = "5";
+    }
+
+    $emailInfo = 'Article quantity: '.$_SESSION['quantity'].'<br>Articles: '.$desc.'<br>Total price: '.$_SESSION['product_price'].' Euro<br>Shipping costs: '.$shippingCost.' Euro';
   ?>
 
   <br>
@@ -156,6 +169,60 @@ error_reporting(0);
       window.location.href = "logout.php";
     }
   </script>
+
+
+
+  <?php 
+
+    require 'vendor/autoload.php';
+
+  $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+try {
+    //Server settings
+    //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'drinkshop41@gmail.com';                 // SMTP username
+    $mail->Password = 'Testtest-1';
+    $mail->SMTPSecure = 'TLS';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587;                                    // TCP port to connect to
+
+    //Recipients
+    $mail->setFrom('drinkshop41@gmail.com', 'Drinks Shop');
+    $mail->addAddress($email, "Your Order:");     // Add a recipient
+   // $mail->addAddress('ellen@example.com');               // Name is optional
+   // $mail->addReplyTo('info@example.com', 'Information');
+   // $mail->addCC('cc@example.com');
+   // $mail->addBCC('bcc@example.com');
+
+    //Attachments
+    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+    //Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+
+   
+
+    $mail->Subject = 'Thank you for your purchase';
+    $mail->Body    =  $emailInfo;
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo 'Message has been sent';
+
+    header("Location: ../WebShop/login.php");
+
+} catch (Exception $e) {
+    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+
+    header("Location: ../WebShop/login.php");
+}
+
+
+
+  ?>
 
 
  </div>
