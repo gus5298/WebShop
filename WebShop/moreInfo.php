@@ -58,11 +58,7 @@ $row = $stmt->fetchObject();
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                   <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#beer">Beer</a></li>
-                    <li><a href="#spirits">Spirits</a></li>
-                    <li><a href="#wine">Wine</a></li>
-                    <li><a href="#special_offers">Special Offers</a></li>
-                  
+                                     
                     <li> <form method="get" action="/WebShop/cart.php">
                     <button type="submit" class="btn btn-default btn-sm"  style="width: 120px; height: 35px; margin-top: 9px;  margin-right:7px;"><span class="glyphicon glyphicon-shopping-cart">
                     </span> Shopping Cart</button></form>
@@ -83,8 +79,8 @@ $row = $stmt->fetchObject();
                 <?php
                 echo "<h2>{$row->name}</h2>";
                 echo "<p>$row->description</p>";
-                echo "<p>$row->price</p>";
-                echo "<p>$row->id</p>";
+                echo "<p>$row->price &euro;</p>";
+                echo "<p>id: $row->id</p>";
                 echo "<img src=\"$row->picture\" alt=\"$row->name\" class=\"rightImg\">"
             
             ?>

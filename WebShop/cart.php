@@ -217,7 +217,7 @@ span.price {
       <hr>
       <p>Total <span class="price" style="color:black"><b id="total">
         
-        <?php echo $_SESSION['product_price']; ?>
+        <?php echo $_SESSION['product_price']; ?> &euro;
 
       </b></span></p>
     </div>

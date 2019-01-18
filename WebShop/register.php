@@ -52,25 +52,12 @@ $stmt = $pdo->query($sql);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                   </button>
-                  <a class="navbar-brand img" href="#"><img src="img/logodrinks.png" class="img-responsive"
+                  <a class="navbar-brand img" href="login.php"><img src="img/logodrinks.png" class="img-responsive"
                     style="width: 160px; margin-top: -26px; margin-left: 20px"></a>
-                     <a class="navbar-brand img" href="#">Drinks Shop</a>
+                     <a class="navbar-brand img" href="login.php">Drinks Shop</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
-                  <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#home">Beer</a></li>
-                    <li><a href="#spirits">Spirits</a></li>
-                    <li><a href="#events">Wine</a></li>
-                    <li><a href="#news">Special Offers</a></li>
                   
-                    <li> <form method="get" action="/WebShop/cart.php">
-                    <button type="submit" class="btn btn-default btn-sm"  style="width: 120px; height: 35px; margin-top: 9px;  margin-right:7px;"><span class="glyphicon glyphicon-shopping-cart">
-                    </span> Shopping Cart</button></form>
-                    </li>
-                   <!--  <li> <form method="get" action="/WAD/admin/view.php">
-                    <button type="submit"  style="width: 90px; height: 35px; margin-top: 7px;  margin-right:7px;">Admin</button></form>
-                    </li> -->
-                  </ul>
                 </div>
               </div>
             </nav>

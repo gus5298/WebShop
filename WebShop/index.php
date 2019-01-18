@@ -81,16 +81,12 @@ $stmt = $pdo->query($sql);
                   <ul class="nav navbar-nav navbar-right">
 
                     <li>
-                    <form id="form1" name="form1" method="get" action=""class="form-inline">
+                    <form id="form1" name="form1" method="get" action=""class="form-inline" style="margin-top: 9px;">
                         <input name="search" type="text" id="search" class="form-control">
                         <input type="submit" name="submit" value="search">
                     </form>
                     </li>
 
-                    <li><a href="#home">Beer</a></li>
-                    <li><a href="#spirits">Spirits</a></li>
-                    <li><a href="#events">Wine</a></li>
-                    <li><a href="#news">Special Offers</a></li>
                     <li><a href="logout.php">Logout</a></li>
 
                     <li>
@@ -120,11 +116,7 @@ $stmt = $pdo->query($sql);
       <div id="spirits">
             <div id="drinks">
                 <h2>Spirits</h2>
-              <!--   <p>This will be the part where ther is text</p>
-                <p>This will be the part where ther is text</p>
-                <p>This will be the part where ther is text</p>
-                <p>This will be the part where ther is text</p>
-                <p>This will be the part where ther is text</p> -->
+
             </div>
       </div>
 
@@ -139,7 +131,7 @@ $stmt = $pdo->query($sql);
                             echo "<img src=\"{$row->picture}\">";
 
                             //MORE DETAILS BUTTON THAT PASSES THE ID
-                            echo "<div class=\"preview\"><a href=\"#\" data-id=\"{$row->id}\"class=\"getPreview\">Preview</a>
+                            echo "<div class=\"preview\">
                                   <a href=\"moreinfo.php?id={$row->id}\">More Details</a></div>";
             echo '</div>';
         }
@@ -153,7 +145,7 @@ $stmt = $pdo->query($sql);
 
 
                             //MORE DETAILS BUTTON THAT PASSES THE ID
-                            echo "<div class=\"preview\"><a href=\"#\" data-id=\"{$row->id}\"class=\"getPreview\">Preview</a>
+                            echo "<div class=\"preview\">
                                   <a href=\"moreinfo.php?id={$row->id}\">More Details</a></div>";
 
 
