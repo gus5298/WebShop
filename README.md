@@ -32,5 +32,7 @@ Tasks:
 ✔ 14	Readability of the website
 
 + everything else is extra and improves the grade
+
   *Search functionality
+  *AJAX poll
   
