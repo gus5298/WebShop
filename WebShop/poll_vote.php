@@ -27,14 +27,14 @@
 	<h2>Result:</h2>
 	<table>
 	<tr>
-	<td>Thursday:</td>
+	<td>Yes:</td>
 	<td>
 
 	<?php echo(100*round($t/($f+$t),2)); ?>%
 	</td>
 	</tr>
 	<tr>
-	<td>Friday:</td>
+	<td>No:</td>
 	<td>
 
 	<?php echo(100*round($f/($f+$t),2)); ?>%

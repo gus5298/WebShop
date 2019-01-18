@@ -20,25 +20,6 @@ $row = $stmt->fetchObject();
               <script type="text/javascript" src="http://www.chessstrategyonline.com/js/widgets.min.js"></script>
               <link rel="stylesheet" type="text/css" href="css/style.css">
         
-      <!-- poll -->
-      <script>
-      function getVote(int) {
-        if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp=new XMLHttpRequest();
-        } else {  // code for IE6, IE5
-          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange=function() {
-          if (this.readyState==4 && this.status==200) {
-            document.getElementById("poll").innerHTML=this.responseText;
-          }
-        }
-        xmlhttp.open("GET","poll_vote.php?vote="+int,true);
-        xmlhttp.send();
-      }
-      </script>
-      <!-- end of poll -->
 
             </head>
             <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -63,9 +44,7 @@ $row = $stmt->fetchObject();
                     <button type="submit" class="btn btn-default btn-sm"  style="width: 120px; height: 35px; margin-top: 9px;  margin-right:7px;"><span class="glyphicon glyphicon-shopping-cart">
                     </span> Shopping Cart</button></form>
                     </li>
-                   <!--  <li> <form method="get" action="/WAD/admin/view.php">
-                    <button type="submit"  style="width: 90px; height: 35px; margin-top: 7px;  margin-right:7px;">Admin</button></form>
-                    </li> -->
+
                   </ul>
                 </div>
               </div>
@@ -102,19 +81,6 @@ $row = $stmt->fetchObject();
     </div>
       </div>
 
-    <!-- poll -->
-      <!-- <div id="poll" class="container text-center">
-      <h3>Quick poll: Do you prefer to meet on Thursdays or Fridays?</h3>
-      <form>
-      Thursdays:
-      <input type="radio" name="vote" value="0" onclick="getVote(this.value)">
-      <br>Fridays:
-      <input type="radio" name="vote" value="1" onclick="getVote(this.value)">
-      </form>
-      </div> -->
-    <!-- end ofpoll -->
-     
-      
     </body>
 
       <footer class="text-center" style="border-top: 3px solid #ccc;">

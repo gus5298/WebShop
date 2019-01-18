@@ -70,21 +70,15 @@ error_reporting(0);
                         window.location.href = "http://localhost/WebShop/cart.php?express=0";
                       }
                     </script>
-                    
-                  
-                    
-                   <!--  <li> <form method="get" action="/WAD/admin/view.php">
-                    <button type="submit"  style="width: 90px; height: 35px; margin-top: 7px;  margin-right:7px;">Admin</button></form>
-                    </li> -->
                   </ul>
                 </div>
               </div>
             </nav>
             <!--end of navbar-->
- <div  style="margin-top: 100px;">
+ <div  class="container text-center" style="margin-top: 100px; ">
     <h1>Order overview</h1><br>
   <p>Your order: </p>
-  <table id="products" border="1px solid black">
+  <table id="products" class="container text-center" border="1px solid black">
     <tr>
       <td>Product name</td>
       <td>Price</td>
@@ -140,6 +134,18 @@ error_reporting(0);
   <h2>Thank you for your purchase</h2>
   <input type="button" name="refresh" onclick="refresh()" value="Click here to order again">
   <input type="button" name="logout" onclick="logout()" value="Click here to logout">
+
+  <!-- poll -->
+      <div id="poll" class="container text-center">
+      <h3>Did you like the shopping experience in our website?</h3>
+      <form>
+      Yes:
+      <input type="radio" name="vote" value="0" onclick="getVote(this.value)">
+      <br>No:
+      <input type="radio" name="vote" value="1" onclick="getVote(this.value)">
+      </form>
+      </div>
+    <!-- end ofpoll -->
 
   <script type="text/javascript">
     function refresh() {

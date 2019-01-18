@@ -24,25 +24,6 @@
               <script type="text/javascript" src="http://www.chessstrategyonline.com/js/widgets.min.js"></script>
               <link rel="stylesheet" type="text/css" href="css/style.css">
       
-      <!-- poll -->
-      <script>
-      function getVote(int) {
-        if (window.XMLHttpRequest) {
-          // code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp=new XMLHttpRequest();
-        } else {  // code for IE6, IE5
-          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange=function() {
-          if (this.readyState==4 && this.status==200) {
-            document.getElementById("poll").innerHTML=this.responseText;
-          }
-        }
-        xmlhttp.open("GET","poll_vote.php?vote="+int,true);
-        xmlhttp.send();
-      }
-      </script>
-      <!-- end of poll -->
 
 <style>
 body {
@@ -172,9 +153,7 @@ span.price {
                     <button type="submit" class="btn btn-default btn-sm"  style="width: 200px; height: 35px; margin-top: 9px;  margin-right:500px;"><span class="glyphicon glyphicon-circle-arrow-left">
                     </span> Continue Shopping</button></form>
                     </li>
-                   <!--  <li> <form method="get" action="/WAD/admin/view.php">
-                    <button type="submit"  style="width: 90px; height: 35px; margin-top: 7px;  margin-right:7px;">Admin</button></form>
-                    </li> -->
+
                   </ul>
                 </div>
               </div>
@@ -233,30 +212,7 @@ span.price {
             
 
           <div class="col-50">
-            <!-- <h3>Payment</h3>
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div>
-            <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-            <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-            <div class="row">
-              <div class="col-50">
-                <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
-              </div>
-              <div class="col-50">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
-              </div>
-            </div> -->
+
           </div>
           
         </div>
