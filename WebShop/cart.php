@@ -14,7 +14,7 @@
               <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
               <script type="text/javascript" src="http://www.chessstrategyonline.com/js/widgets.min.js"></script>
               <link rel="stylesheet" type="text/css" href="css/style.css">
-        
+      
       <!-- poll -->
       <script>
       function getVote(int) {
@@ -34,6 +34,7 @@
       }
       </script>
       <!-- end of poll -->
+
 <style>
 body {
   font-family: Arial;
@@ -211,31 +212,12 @@ span.price {
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="/action_page.php">
+      <form action="address.php" method="POST">
       
         <div class="row">
-          <div class="col-50">
-            <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="john@example.com">
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-            <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="New York">
-
-            <div class="row">
-              <div class="col-50">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="NY">
-              </div>
-              <div class="col-50">
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="10001">
-              </div>
-            </div>
-          </div>
+            <input type="text" id="adr" name="address" placeholder="Pestalozzistr. 41, Reutlingen, Germany" required="required">
+            
 
           <div class="col-50">
             <!-- <h3>Payment</h3>
@@ -265,35 +247,141 @@ span.price {
           </div>
           
         </div>
-        <div class="radio">
-       <label><input type="radio" id="nd" name="optradio" onchange="lessMoney()" checked>Normal delivery</label>
-       </div>
-      <div class="radio">
-      <label><input type="radio" id="ed" name="optradio" onchange="moreMoney()">Express delivery (+ 5EUR)</label>
-      </div>
-        <?php
-
-          function lessMoney() {
-            if (document.getElementById("nd").checked) {
-              $_SESSION['product_price'] = $_SESSION['product_price'] - 5;
-            }
-          }
-
-          function moreMoney() {
-            if (document.getElementById("ed").checked) {
-              $_SESSION['product_price'] = $_SESSION['product_price'] + 5;
-            }
-          }
-
-        ?>
         <input type="submit" value="Order and Pay" class="btn">
       </form>
+      <div id="delivery">
+
+        <input type="radio" name="delivery" id="normal" onclick="normal()" checked><p id="normalText">Normal delivery</p>
+        <input type="radio" name="delivery" id="express" onclick="express()"><p id="expressText">Express delivery</p>
+
+        <p id="demo"></p>
+
+        <script type="text/javascript">
+          function getAllUrlParams(url) {
+
+  // get query string from url (optional) or window
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+  // we'll store the parameters here
+  var obj = {};
+
+  // if query string exists
+  if (queryString) {
+
+    // stuff after # is not part of query string, so get rid of it
+    queryString = queryString.split('#')[0];
+
+    // split our query string into its component parts
+    var arr = queryString.split('&');
+
+    for (var i = 0; i < arr.length; i++) {
+      // separate the keys and the values
+      var a = arr[i].split('=');
+
+      // set parameter name and value (use 'true' if empty)
+      var paramName = a[0];
+      var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+
+      // (optional) keep case consistent
+      paramName = paramName.toLowerCase();
+      if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
+
+      // if the paramName ends with square brackets, e.g. colors[] or colors[2]
+      if (paramName.match(/\[(\d+)?\]$/)) {
+
+        // create key if it doesn't exist
+        var key = paramName.replace(/\[(\d+)?\]/, '');
+        if (!obj[key]) obj[key] = [];
+
+        // if it's an indexed array e.g. colors[2]
+        if (paramName.match(/\[\d+\]$/)) {
+          // get the index value and add the entry at the appropriate position
+          var index = /\[(\d+)\]/.exec(paramName)[1];
+          obj[key][index] = paramValue;
+        } else {
+          // otherwise add the value to the end of the array
+          obj[key].push(paramValue);
+        }
+      } else {
+        // we're dealing with a string
+        if (!obj[paramName]) {
+          // if it doesn't exist, create property
+          obj[paramName] = paramValue;
+        } else if (obj[paramName] && typeof obj[paramName] === 'string'){
+          // if property does exist and it's a string, convert it to an array
+          obj[paramName] = [obj[paramName]];
+          obj[paramName].push(paramValue);
+        } else {
+          // otherwise add the property
+          obj[paramName].push(paramValue);
+        }
+      }
+    }
+  }
+
+  return obj;
+}
+
+            var url = window.location.href;
+            var apurl = getAllUrlParams(url);
+            var e = getAllUrlParams().express;
+            var d;
+            d = getAllUrlParams().delivery;
+            if (e == "0" && d == "1") {
+              document.getElementById("delivery").removeChild(document.getElementById("normal"));
+              document.getElementById("delivery").removeChild(document.getElementById("normalText"));
+              document.getElementById("delivery").removeChild(document.getElementById("express"));
+              document.getElementById("delivery").removeChild(document.getElementById("expressText"));
+              document.getElementById("demo").innerHTML = "You selected normal delivery";
+            } else if (e == "1" && d == "1") {
+              document.getElementById("delivery").removeChild(document.getElementById("normal"));
+              document.getElementById("delivery").removeChild(document.getElementById("normalText"));
+              document.getElementById("delivery").removeChild(document.getElementById("express"));
+              document.getElementById("delivery").removeChild(document.getElementById("expressText"));
+              document.getElementById("demo").innerHTML = "You selected express delivery";
+            }
+        </script>
+
+        <script type="text/javascript">
+        function normal() {
+          var txt;
+          if (confirm("Would you like to oreder a normal delivery?")) {
+            document.getElementById("delivery").removeChild(document.getElementById("normal"));
+            document.getElementById("delivery").removeChild(document.getElementById("normalText"));
+            document.getElementById("delivery").removeChild(document.getElementById("express"));
+            document.getElementById("delivery").removeChild(document.getElementById("expressText"));
+            window.location.href = "http://localhost/WebShop/delivery.php?express=0";
+            txt = "You selected normal delivery";
+          } else {
+            txt = "";
+          }
+          document.getElementById("demo").innerHTML = txt;
+        }
+
+        function express() {
+          var txt;
+          if (confirm("Would you like to order a express delivery?")) {
+            document.getElementById("delivery").removeChild(document.getElementById("normal"));
+            document.getElementById("delivery").removeChild(document.getElementById("normalText"));
+            document.getElementById("delivery").removeChild(document.getElementById("express"));
+            document.getElementById("delivery").removeChild(document.getElementById("expressText"));
+            window.location.href = "http://localhost/WebShop/delivery.php?express=1";
+            txt = "You selected express delivery";
+          } else {
+            txt = "";
+          }
+          document.getElementById("demo").innerHTML = txt;
+        }
+        </script>
+      </div>
     </div>
   </div>
   
 </div>
 
 </body>
+
+          
 
       <footer class="text-center" style="border-top: 3px solid #ccc;">
               <p>Created by: Gustavo Sanchez, Arjun Grewal and Francisco J. Garcia</p>

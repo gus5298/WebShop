@@ -8,6 +8,6 @@ $price = $_POST['product_price'];
 $_SESSION['product_price'] = $_SESSION['product_price'] + $price;
 $quantity = $_POST['quantity'];
 $_SESSION['quantity'] = $_SESSION['quantity'] + $quantity;
-
-header("refresh:1; url=cart.php");
+$_SESSION['express'] = 0;
+header("refresh:1; url=cart.php?express=0");
 ?>
