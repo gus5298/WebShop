@@ -21,7 +21,7 @@ Tasks:
 
 ✔ 9	Add item to cart and buy (display + function) //Javi
 
-☐ 10	When ordering, 2 types of delivery can be selected / Normal or Express (+ X €) //Gustavo
+✔ 10	When ordering, 2 types of delivery can be selected / Normal or Express (+ X €) //Gustavo
 
 ✘ 11	Confirmation by email (function) with article quantity + article name + total + shipping costs 
 
