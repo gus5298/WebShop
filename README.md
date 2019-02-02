@@ -23,7 +23,7 @@ Tasks:
 
 ✔ 10	When ordering, 2 types of delivery can be selected / Normal or Express (+ X €) //Gustavo
 
-✘ 11	Confirmation by email (function) with article quantity + article name + total + shipping costs 
+✔ 11	Confirmation by email (function) with article quantity + article name + total + shipping costs 
 
 ✔ 12	Overview of purchased items (display + function)
 
