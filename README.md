@@ -3,25 +3,25 @@
 Tasks:
 
 
-✔ 1	Login page + (view + function) //Arjun
+✔ 1	Login page + (view + function)
 
-✔ 2	Validation of data before they are sent (client side) (function) //Javi
+✔ 2	Validation of data before they are sent (client side) (function)
 
-✔ 3	User Registration + (display + function) (prevent double registration!)//Arjun
+✔ 3	User Registration + (display + function) (prevent double registration!)
 
-✔ 4	Registration confirmation => Email //Arjun
+✔ 4	Registration confirmation => Email
 
-✔ 5	Password SHA2 encrypted in database (function) //Arjun
+✔ 5	Password SHA2 encrypted in database (function)
 
-✔ 6	Encrypt password before sending (only transfer encrypted passwords) //Arjun
+✔ 6	Encrypt password before sending (only transfer encrypted passwords)
 
-✘ 7	Online status with AJAX without page reload (number of users online) (display + function) 
+✔ 7	Search functionality
 
-✔ 8	Show article overview (display + function) //Gustavo
+✔ 8	Show article overview (display + function) 
 
-✔ 9	Add item to cart and buy (display + function) //Javi
+✔ 9	Add item to cart and buy (display + function) 
 
-✔ 10	When ordering, 2 types of delivery can be selected / Normal or Express (+ X €) //Gustavo
+✔ 10	When ordering, 2 types of delivery can be selected / Normal or Express (+ X €) 
 
 ✔ 11	Confirmation by email (function) with article quantity + article name + total + shipping costs 
 
@@ -31,8 +31,7 @@ Tasks:
 
 ✔ 14	Readability of the website
 
-+ everything else is extra and improves the grade
+✔ 15 AJAX poll
 
-  *Search functionality
-  *AJAX poll
+ 
   
